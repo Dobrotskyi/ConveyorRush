@@ -9,18 +9,26 @@ public class FoodSpawner : MonoBehaviour
     [SerializeField] private float _spawnRateInSeconds = 1.5f;
     [SerializeField] private bool _keepSpawning = false;
 
-    private void Start()
+    private void OnEnable()
     {
-        StartCoroutine(StartSpawning());
+        MainMenu.Instance.StartGame += StartSpawning;
     }
 
-    public IEnumerator StartSpawning()
+    private void OnDisable()
+    {
+        MainMenu.Instance.StartGame -= StartSpawning;
+    }
+
+    private void StartSpawning()
+    {
+        StartCoroutine(Spawning());
+    }
+
+    private IEnumerator Spawning()
     {
         while (_keepSpawning)
         {
-            GameObject food = Instantiate(GetRandomFood());
-            food.transform.position = _spawnPoint.transform.position;
-            food.transform.rotation = Quaternion.identity;
+            GameObject food = Instantiate(GetRandomFood(), _spawnPoint.transform.position, Quaternion.identity);
             yield return new WaitForSeconds(_spawnRateInSeconds);
         }
     }
