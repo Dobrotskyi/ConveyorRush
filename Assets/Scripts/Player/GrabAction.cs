@@ -4,12 +4,17 @@ namespace AllPlayerActions
 {
     public class GrabAction : SinglePlayerAction
     {
+        public bool Grabing { private set; get; }
         [SerializeField] private GameObject _handRigTarget;
         [SerializeField] private GameObject _itemPlacement;
         private GameObject _target;
 
         public void Grab(GameObject target)
         {
+            if (Grabing)
+                return;
+
+            Grabing = true;
             _handRigTarget.transform.position = target.transform.position;
             _animator.ResetTrigger("GrabItem");
             _animator.SetTrigger("GrabItem");
@@ -38,6 +43,7 @@ namespace AllPlayerActions
         {
             Destroy(_target);
             _target = null;
+            Grabing = false;
         }
     }
 }
