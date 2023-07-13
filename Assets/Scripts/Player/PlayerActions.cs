@@ -32,7 +32,6 @@ namespace AllPlayerActions
 
         private void TryGrab(GameObject target)
         {
-            Debug.Log(Vector3.Distance(target.transform.position, _shoulderPlacement.position));
             if (Vector3.Distance(target.transform.position, _shoulderPlacement.position) < MAX_REACH_DIST)
             {
                 _moveAction.StopMoving();
