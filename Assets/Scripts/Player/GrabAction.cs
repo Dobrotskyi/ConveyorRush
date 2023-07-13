@@ -16,6 +16,13 @@ namespace AllPlayerActions
             _target = target;
         }
 
+        private void Update()
+        {
+            if (_target == null)
+                return;
+            _handRigTarget.transform.position = _target.transform.position;
+        }
+
         private void PlayerGrabbedItem()
         {
             Rigidbody _targetRb = _target.GetComponent<Rigidbody>();
