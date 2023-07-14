@@ -15,6 +15,7 @@ public class TaskCanvas : MonoBehaviour
     {
         MainMenu.Instance.StartGame += ShowTask;
         Task.Instance.FoodAmtUpdated += ShowTask;
+        Task.Instance.TaskCompleted += HideTask;
         if (_content.activeSelf)
             _content.SetActive(false);
     }
@@ -23,6 +24,7 @@ public class TaskCanvas : MonoBehaviour
     {
         MainMenu.Instance.StartGame -= ShowTask;
         Task.Instance.FoodAmtUpdated -= ShowTask;
+        Task.Instance.TaskCompleted -= HideTask;
     }
 
     private void ShowTask()
@@ -31,5 +33,10 @@ public class TaskCanvas : MonoBehaviour
             _content.SetActive(true);
 
         _taskText.text = Task.Instance.ToString();
+    }
+
+    private void HideTask()
+    {
+        _content.SetActive(false);
     }
 }
