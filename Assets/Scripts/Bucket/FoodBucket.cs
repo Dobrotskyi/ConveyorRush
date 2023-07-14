@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodBucket : MonoBehaviour
+public class FoodBucket : MonoBehaviourSingleton<FoodBucket>
 {
+    public event Action ItemStored;
     [SerializeField] private List<Transform> _foodPlacementPoints;
     private int _itemsInside = 0;
     private GameObject _itemToStore;
@@ -19,6 +21,7 @@ public class FoodBucket : MonoBehaviour
         _itemToStore.transform.localPosition = Vector3.zero;
         _itemToStore.transform.localScale /= 2;
         _itemsInside++;
+        ItemStored?.Invoke();
         _itemToStore = null;
     }
 

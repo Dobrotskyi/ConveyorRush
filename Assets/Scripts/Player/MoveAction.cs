@@ -5,7 +5,7 @@ namespace AllPlayerActions
 {
     public class MoveAction : SinglePlayerAction
     {
-        private const float Left_Border_X = -2.9f;
+        private const float Left_Border_X = -2.8f;
         private const float Right_Border_X = 0.2f;
 
         public event Action<GameObject> ReachedPosition;

@@ -14,6 +14,7 @@ public class TaskCanvas : MonoBehaviour
     private void OnEnable()
     {
         MainMenu.Instance.StartGame += ShowTask;
+        Task.Instance.FoodAmtUpdated += ShowTask;
         if (_content.activeSelf)
             _content.SetActive(false);
     }
@@ -21,11 +22,14 @@ public class TaskCanvas : MonoBehaviour
     private void OnDisable()
     {
         MainMenu.Instance.StartGame -= ShowTask;
+        Task.Instance.FoodAmtUpdated -= ShowTask;
     }
 
     private void ShowTask()
     {
-        _content.SetActive(true);
+        if (!_content.activeSelf)
+            _content.SetActive(true);
+
         _taskText.text = Task.Instance.ToString();
     }
 }
