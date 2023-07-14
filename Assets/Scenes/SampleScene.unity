@@ -4629,6 +4629,11 @@ PrefabInstance:
       objectReference: {fileID: 1333294984}
     - target: {fileID: -7758569801643516648, guid: 4b392a54ac34ca8409afe8e3b760b9ba,
         type: 3}
+      propertyPath: _foodBucket
+      value: 
+      objectReference: {fileID: 5882448671457986684}
+    - target: {fileID: -7758569801643516648, guid: 4b392a54ac34ca8409afe8e3b760b9ba,
+        type: 3}
       propertyPath: _itemPlacement
       value: 
       objectReference: {fileID: 1288870845}
@@ -5926,6 +5931,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 9125146702800724645}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5882448671457986684 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4738035757512479394, guid: fc320e1374bd4794882a9c79bf0b1cf4,
+    type: 3}
+  m_PrefabInstance: {fileID: 9125146702800724645}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b83fcd2b6d71bb449a24a035ccd5c8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6698022399345502582
 PrefabInstance:
   m_ObjectHideFlags: 0

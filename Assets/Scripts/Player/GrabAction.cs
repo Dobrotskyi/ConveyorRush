@@ -7,11 +7,13 @@ namespace AllPlayerActions
         private const float _movementSpeed = 5f;
 
         public bool Grabing => _isGrabing || _inHand;
+
         [SerializeField] private GameObject _handRigTarget;
         [SerializeField] private GameObject _handHint;
         [SerializeField] private GameObject _itemPlacement;
         [SerializeField] private Vector3 _startHandPositionInStoreAnimation;
         [SerializeField] private Vector3 _startHintPositionInStoreAnimation;
+        [SerializeField] private FoodBucket _foodBucket;
         private GameObject _target;
         private bool _isGrabing = false;
         private bool _inHand = false;
@@ -85,7 +87,11 @@ namespace AllPlayerActions
 
         private void PlayerStoredItem()
         {
-            Destroy(_target);
+            _target.transform.SetParent(null, true);
+            Rigidbody targetRb = _target.GetComponent<Rigidbody>();
+            targetRb.useGravity = true;
+            targetRb.isKinematic = false;
+            _foodBucket.WaitForObject(_target);
             ResetTarget();
         }
 
