@@ -3578,6 +3578,10 @@ MonoBehaviour:
   m_RigLayers:
   - m_Rig: {fileID: 5561618089015440324}
     m_Active: 1
+  - m_Rig: {fileID: 0}
+    m_Active: 1
+  - m_Rig: {fileID: 0}
+    m_Active: 1
   m_Effectors: []
 --- !u!114 &-7758569801643516648
 MonoBehaviour:
@@ -3592,6 +3596,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _handRigTarget: {fileID: 1725394666516205360}
+  _handHint: {fileID: 394050236078507747}
+  _itemPlacement: {fileID: 0}
+  _startHandPositionInStoreAnimation: {x: -2.719165, y: 1.191, z: 4.5429997}
+  _startHintPositionInStoreAnimation: {x: -2.694, y: 1.231, z: 4.892}
+  _foodBucket: {fileID: 0}
 --- !u!114 &6837303455025824371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3604,6 +3613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db3543fd31341840b8abdfba27088ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _runningSpeed: 3
 --- !u!114 &4933317110374112577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3616,6 +3626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 269fe32e636db30499d4814ba1843882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shoulderPlacement: {fileID: 4048549195425508556}
 --- !u!1 &8241726857171112062
 GameObject:
   m_ObjectHideFlags: 0

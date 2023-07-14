@@ -61,7 +61,6 @@ namespace AllPlayerActions
                 {
                     ReachedPosition?.Invoke(_target);
                     StopMoving();
-                    Debug.Log("Reached target");
                 }
             }
         }
