@@ -44,10 +44,7 @@ public class TouchHandler : MonoBehaviourSingleton<TouchHandler>
         if (Physics.Raycast(ray, out hit))
         {
             if (hit.transform.CompareTag("Food"))
-            {
-                Debug.Log(hit.transform.gameObject.name);
                 TryGrab?.Invoke(hit.transform.gameObject);
-            }
         }
     }
 }
