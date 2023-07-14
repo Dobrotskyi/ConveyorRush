@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9664833429810129}
   - component: {fileID: 9106230197000985632}
   - component: {fileID: 7808205457350092130}
+  - component: {fileID: -6363852162372520041}
   m_Layer: 0
   m_Name: Tomato
   m_TagString: Food
@@ -134,6 +135,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.10749187
   m_Center: {x: 0.0011817031, y: -0.0023606308, z: -0.00017534196}
+--- !u!114 &-6363852162372520041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5134045344071248316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80a1dc4be8672574ba0face9d680847a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 3
 --- !u!1 &6227270971823769828
 GameObject:
   m_ObjectHideFlags: 0

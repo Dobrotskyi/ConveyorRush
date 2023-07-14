@@ -4,6 +4,8 @@ namespace AllPlayerActions
 {
     public class GrabAction : SinglePlayerAction
     {
+        private const float _movementSpeed = 5f;
+
         public bool Grabing => _isGrabing || _inHand;
         [SerializeField] private GameObject _handRigTarget;
         [SerializeField] private GameObject _handHint;
@@ -35,25 +37,35 @@ namespace AllPlayerActions
                 _handRigTarget.transform.position = _target.transform.position;
 
             if (_inHand && !_handInPlace)
-                BringHandInStoreAnimPosition();
+                BringHandInAnimPosition();
         }
 
-        private void BringHandInStoreAnimPosition()
+        private void BringHandInAnimPosition()
         {
             _handRigTarget.transform.localPosition =
                                  Vector3.Lerp(_handRigTarget.transform.localPosition,
                                  _startHandPositionInStoreAnimation,
-                                 5 * Time.deltaTime);
+                                 _movementSpeed * Time.deltaTime);
             _handHint.transform.localPosition =
                                  Vector3.Lerp(_handHint.transform.localPosition,
                                  _startHintPositionInStoreAnimation,
-                                 5 * Time.deltaTime);
+                                 _movementSpeed * Time.deltaTime);
 
             if (Vector3.Distance(_handRigTarget.transform.localPosition, _startHandPositionInStoreAnimation) <= 0.05f)
             {
-                _animator.ResetTrigger("StoreItem");
-                _animator.SetTrigger("StoreItem");
                 _handInPlace = true;
+
+                FoodTypes itemFoodType = _target.GetComponent<FoodTypeMarker>().Type;
+                if (itemFoodType == Task.Instance.FoodToCollect)
+                {
+                    _animator.ResetTrigger("StoreItem");
+                    _animator.SetTrigger("StoreItem");
+                }
+                else
+                {
+                    _animator.ResetTrigger("ThrowAwayItem");
+                    _animator.SetTrigger("ThrowAwayItem");
+                }
             }
         }
 
@@ -74,6 +86,20 @@ namespace AllPlayerActions
         private void PlayerStoredItem()
         {
             Destroy(_target);
+            ResetTarget();
+        }
+
+        private void ThrowAwayItem()
+        {
+            _target.transform.SetParent(null, true);
+            Rigidbody targetRb = _target.GetComponent<Rigidbody>();
+            targetRb.useGravity = true;
+            targetRb.isKinematic = false;
+            ResetTarget();
+        }
+
+        private void ResetTarget()
+        {
             _target = null;
             _isGrabing = false;
             _inHand = false;

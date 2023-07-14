@@ -26,19 +26,6 @@ public class TaskCanvas : MonoBehaviour
     private void ShowTask()
     {
         _content.SetActive(true);
-        _taskText.text = GenerateTask();
+        _taskText.text = Task.Instance.ToString();
     }
-
-    private string GenerateTask()
-    {
-        StringBuilder sb = new();
-        string[] foodNames = Enum.GetNames(typeof(FoodTypes));
-        System.Random rnd = new();
-        string randomFoodName = foodNames[rnd.Next(foodNames.Length)] + "s";
-        sb.AppendLine($"Collect {rnd.Next(MIN_FOOD_AMT, MAX_FOOD_AMT + 1)} {randomFoodName}");
-
-        return sb.ToString();
-    }
-
-
 }

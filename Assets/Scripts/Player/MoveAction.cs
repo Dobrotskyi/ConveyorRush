@@ -5,6 +5,9 @@ namespace AllPlayerActions
 {
     public class MoveAction : SinglePlayerAction
     {
+        private const float Left_Border_X = -2.9f;
+        private const float Right_Border_X = 0.2f;
+
         public event Action<GameObject> ReachedPosition;
 
         [SerializeField] private float _runningSpeed = 5f;
@@ -21,12 +24,17 @@ namespace AllPlayerActions
             _newPos = transform.position;
             _newPos.x = target.position.x;
 
+            if (_newPos.x < Left_Border_X || _newPos.x > Right_Border_X)
+            {
+                StopMoving();
+                return;
+            }
+
             if (transform.position.x < _newPos.x)
             {
                 _animator.SetBool("MoveLeft", true);
                 _moveRight = false;
             }
-
             else
             {
                 _animator.SetBool("MoveRight", true);

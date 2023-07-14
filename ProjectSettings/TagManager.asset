@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ConveyorEnd
   - Food
+  - Floor
   layers:
   - Default
   - TransparentFX

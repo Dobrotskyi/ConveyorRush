@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7067138249451784450}
   - component: {fileID: 4566546374178471436}
   - component: {fileID: 413927529182677553}
+  - component: {fileID: 388996669035134489}
   m_Layer: 0
   m_Name: Bread
   m_TagString: Food
@@ -33,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &9196968563084829212
 MeshFilter:
@@ -133,3 +134,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &388996669035134489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495359937510482847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80a1dc4be8672574ba0face9d680847a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 1
