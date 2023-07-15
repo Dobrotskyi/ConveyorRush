@@ -58,7 +58,7 @@ namespace AllPlayerActions
                 _handInPlace = true;
 
                 FoodTypes itemFoodType = _target.GetComponent<FoodTypeMarker>().Type;
-                if (itemFoodType == Task.Instance.FoodToCollect)
+                if (itemFoodType == SingletonTask.Instance.FoodToCollect)
                 {
                     _animator.ResetTrigger("StoreItem");
                     _animator.SetTrigger("StoreItem");

@@ -1,6 +1,6 @@
 using System;
 
-public class Task
+public class SingletonTask
 {
     private const int MIN_FOOD_AMT = 1;
     private const int MAX_FOOD_AMT = 5;
@@ -11,18 +11,18 @@ public class Task
 
     public int FoodAmt { private set; get; }
 
-    private static Task s_instance;
-    private Task() { }
+    private static SingletonTask s_instance;
+    private SingletonTask() { }
 
-    public static Task Instance
+    public static SingletonTask Instance
     {
         get
         {
             if (s_instance == null)
             {
-                s_instance = new Task();
+                s_instance = new SingletonTask();
                 s_instance.GenerateTask();
-                FoodBucket.Instance.ItemStored += s_instance.OnItemStored;
+                FoodBucket.ItemStored += s_instance.OnItemStored;
             }
             return s_instance;
         }
@@ -36,7 +36,7 @@ public class Task
         return result;
     }
 
-    private void OnItemStored()
+    public void OnItemStored()
     {
         if (FoodAmt > 0)
         {
@@ -44,13 +44,16 @@ public class Task
             FoodAmtUpdated?.Invoke();
         }
         if (FoodAmt == 0)
+        {
             TaskCompleted?.Invoke();
+            GenerateTask();
+        }
     }
 
     private void GenerateTask()
     {
         FoodToCollect = (FoodTypes)RandomFromEnumFinder.GetRandomFromEnum<FoodTypes>();
-        System.Random rnd = new();
+        Random rnd = new();
         FoodAmt = rnd.Next(MIN_FOOD_AMT, MAX_FOOD_AMT + 1);
     }
 }

@@ -2,34 +2,36 @@ using UnityEngine;
 
 public abstract class MonoBehaviourSingleton<T> : MonoBehaviour where T : Component
 {
-    private static T _instance;
+    private static T s_instance;
     public static T Instance
     {
         get
         {
-            if (_instance == null)
+            if (s_instance == null)
             {
                 var objs = FindObjectsOfType(typeof(T)) as T[];
                 if (objs.Length > 0)
-                    _instance = objs[0];
+                    s_instance = objs[0];
+
                 if (objs.Length > 1)
                 {
-                    _instance = objs[0];
+                    s_instance = objs[0];
                     foreach (var obj in objs)
                     {
-                        if (_instance == obj)
+                        if (s_instance == obj)
                             continue;
                         Destroy(obj);
                     }
                 }
-                if (_instance == null)
+                if (s_instance == null)
                 {
+                    UnityEngine.Debug.Log("New gameobject");
                     GameObject obj = new GameObject();
                     obj.hideFlags = HideFlags.HideAndDontSave;
-                    _instance = obj.AddComponent<T>();
+                    s_instance = obj.AddComponent<T>();
                 }
             }
-            return _instance;
+            return s_instance;
         }
     }
 }

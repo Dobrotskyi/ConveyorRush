@@ -1,5 +1,3 @@
-using System;
-using System.Text;
 using TMPro;
 using UnityEngine;
 
@@ -11,20 +9,24 @@ public class TaskCanvas : MonoBehaviour
     [SerializeField] private GameObject _content;
     [SerializeField] private TextMeshProUGUI _taskText;
 
-    private void OnEnable()
+    private void Start()
     {
-        MainMenu.Instance.StartGame += ShowTask;
-        Task.Instance.FoodAmtUpdated += ShowTask;
-        Task.Instance.TaskCompleted += HideTask;
         if (_content.activeSelf)
             _content.SetActive(false);
     }
 
+    private void OnEnable()
+    {
+        MainMenu.StartGame += ShowTask;
+        SingletonTask.Instance.FoodAmtUpdated += ShowTask;
+        SingletonTask.Instance.TaskCompleted += HideTask;
+    }
+
     private void OnDisable()
     {
-        MainMenu.Instance.StartGame -= ShowTask;
-        Task.Instance.FoodAmtUpdated -= ShowTask;
-        Task.Instance.TaskCompleted -= HideTask;
+        MainMenu.StartGame -= ShowTask;
+        SingletonTask.Instance.FoodAmtUpdated -= ShowTask;
+        SingletonTask.Instance.TaskCompleted -= HideTask;
     }
 
     private void ShowTask()
@@ -32,7 +34,7 @@ public class TaskCanvas : MonoBehaviour
         if (!_content.activeSelf)
             _content.SetActive(true);
 
-        _taskText.text = Task.Instance.ToString();
+        _taskText.text = SingletonTask.Instance.ToString();
     }
 
     private void HideTask()

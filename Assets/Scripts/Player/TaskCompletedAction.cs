@@ -1,14 +1,22 @@
+using UnityEngine;
+
 namespace AllPlayerActions
 {
     public class TaskCompletedAction : SinglePlayerAction
     {
-        private void Start()
+        private void OnEnable()
         {
-            Task.Instance.TaskCompleted += OnTaskCompleted;
+            SingletonTask.Instance.TaskCompleted += OnTaskCompleted;
+        }
+
+        private void OnDisable()
+        {
+            SingletonTask.Instance.TaskCompleted -= OnTaskCompleted;
         }
 
         private void OnTaskCompleted()
         {
+            Debug.Log(GetComponent<Animator>());
             if (_animator.GetBool("TaskCompleted"))
                 return;
 

@@ -19,12 +19,12 @@ public class EndGameCanvas : MonoBehaviour
 
     private void OnEnable()
     {
-        Task.Instance.TaskCompleted += ShowEndMenu;
+        SingletonTask.Instance.TaskCompleted += ShowEndMenu;
     }
 
     private void OnDisable()
     {
-        Task.Instance.TaskCompleted -= ShowEndMenu;
+        SingletonTask.Instance.TaskCompleted -= ShowEndMenu;
     }
 
     private void ShowEndMenu()

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class FoodBucket : MonoBehaviourSingleton<FoodBucket>
 {
-    public event Action ItemStored;
+    public static event Action ItemStored;
+
     [SerializeField] private List<Transform> _foodPlacementPoints;
     private int _itemsInside = 0;
     private GameObject _itemToStore;
