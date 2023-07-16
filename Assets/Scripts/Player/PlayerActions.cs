@@ -24,6 +24,7 @@ namespace AllPlayerActions
             ControllsCanvas.MoveLeftButtonPressed += MoveLeft;
             ControllsCanvas.MoveRightButtonPressed += MoveRight;
             TouchHandler.TryGrab += TryGrab;
+            TouchHandler.ControllButtonReleased += OnControllButtonReleased;
             _toTargetAction.ReachedPosition += TryGrab;
         }
 
@@ -32,6 +33,7 @@ namespace AllPlayerActions
             ControllsCanvas.MoveLeftButtonPressed -= MoveLeft;
             ControllsCanvas.MoveRightButtonPressed -= MoveRight;
             TouchHandler.TryGrab -= TryGrab;
+            TouchHandler.ControllButtonReleased -= OnControllButtonReleased;
         }
 
         private void TryGrab(GameObject target)
@@ -59,5 +61,7 @@ namespace AllPlayerActions
             if (!_grabAction.Grabing && !_toTargetAction.MovingToTarget)
                 _sideMovementAction.MoveToTheRight();
         }
+
+        private void OnControllButtonReleased() => _sideMovementAction.StopMoving();
     }
 }

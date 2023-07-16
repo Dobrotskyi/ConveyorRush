@@ -21,6 +21,7 @@ namespace AllPlayerActions
 
         protected void TurnOffMovingAnimations()
         {
+            Debug.Log("Turned off moving animations");
             if (_animator.GetBool("MoveRight"))
                 _animator.SetBool("MoveRight", false);
             if (_animator.GetBool("MoveLeft"))
