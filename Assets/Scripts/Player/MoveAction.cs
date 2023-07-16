@@ -14,7 +14,7 @@ namespace AllPlayerActions
         private FoodMarker _targetFood;
         private Vector3 _newPos;
         private bool _movingToTarget;
-        private bool _moveRight = false;
+        private bool _movingToTargetRight = false;
 
         public void StartMovingTo(Transform target)
         {
@@ -32,11 +32,11 @@ namespace AllPlayerActions
 
             if (transform.position.x < _newPos.x)
             {
-                _moveRight = false;
+                _movingToTargetRight = false;
             }
             else
             {
-                _moveRight = true;
+                _movingToTargetRight = true;
             }
 
             _movingToTarget = true;
@@ -60,7 +60,7 @@ namespace AllPlayerActions
                     return;
                 }
 
-                MoveToTheSide(_moveRight);
+                MoveToTheSide(_movingToTargetRight);
 
                 if (Vector3.Distance(transform.position, _newPos) <= 0.1f)
                 {

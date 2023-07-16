@@ -8,12 +8,15 @@ namespace AllPlayerActions
 
         [SerializeField] private Transform _shoulderPlacement;
         private GrabAction _grabAction;
-        private MoveAction _moveAction;
+
+        private SideMovementAction _sideMovementAction;
+        private MoveToTargetAction _toTargetAction;
 
         private void Awake()
         {
             _grabAction = GetComponent<GrabAction>();
-            _moveAction = GetComponent<MoveAction>();
+            _sideMovementAction = GetComponent<SideMovementAction>();
+            _toTargetAction = GetComponent<MoveToTargetAction>();
         }
 
         private void OnEnable()
@@ -21,7 +24,7 @@ namespace AllPlayerActions
             ControllsCanvas.MoveLeftButtonPressed += MoveLeft;
             ControllsCanvas.MoveRightButtonPressed += MoveRight;
             TouchHandler.TryGrab += TryGrab;
-            _moveAction.ReachedPosition += TryGrab;
+            _toTargetAction.ReachedPosition += TryGrab;
         }
 
         private void OnDisable()
@@ -29,7 +32,6 @@ namespace AllPlayerActions
             ControllsCanvas.MoveLeftButtonPressed -= MoveLeft;
             ControllsCanvas.MoveRightButtonPressed -= MoveRight;
             TouchHandler.TryGrab -= TryGrab;
-            _moveAction.ReachedPosition -= TryGrab;
         }
 
         private void TryGrab(GameObject target)
@@ -39,23 +41,23 @@ namespace AllPlayerActions
 
             if (Vector3.Distance(target.transform.position, _shoulderPlacement.position) < MAX_REACH_DIST)
             {
-                _moveAction.StopMoving();
+                _toTargetAction.StopMoving();
                 _grabAction.Grab(target);
             }
             else
-                _moveAction.StartMovingTo(target.transform);
+                _toTargetAction.StartMovingTo(target.transform);
         }
 
         private void MoveLeft()
         {
-            if (!_grabAction.Grabing)
-                _moveAction.MoveToTheLeft();
+            if (!_grabAction.Grabing && !_toTargetAction.MovingToTarget)
+                _sideMovementAction.MoveToTheLeft();
         }
 
         private void MoveRight()
         {
-            if (!_grabAction.Grabing)
-                _moveAction.MoveToTheRight();
+            if (!_grabAction.Grabing && !_toTargetAction.MovingToTarget)
+                _sideMovementAction.MoveToTheRight();
         }
     }
 }
