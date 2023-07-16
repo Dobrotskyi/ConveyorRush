@@ -9,24 +9,22 @@ namespace AllPlayerActions
         [SerializeField] private Transform _shoulderPlacement;
         private GrabAction _grabAction;
         private MoveAction _moveAction;
-        private TouchHandler _touchHandler;
 
         private void Awake()
         {
-            _touchHandler = TouchHandler.Instance;
             _grabAction = GetComponent<GrabAction>();
             _moveAction = GetComponent<MoveAction>();
         }
 
         private void OnEnable()
         {
-            _touchHandler.TryGrab += TryGrab;
+            TouchHandler.TryGrab += TryGrab;
             _moveAction.ReachedPosition += TryGrab;
         }
 
         private void OnDisable()
         {
-            _touchHandler.TryGrab -= TryGrab;
+            TouchHandler.TryGrab -= TryGrab;
             _moveAction.ReachedPosition -= TryGrab;
         }
 

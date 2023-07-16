@@ -16,7 +16,6 @@ namespace AllPlayerActions
 
         private void OnTaskCompleted()
         {
-            Debug.Log(GetComponent<Animator>());
             if (_animator.GetBool("TaskCompleted"))
                 return;
 

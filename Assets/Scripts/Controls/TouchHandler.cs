@@ -1,10 +1,14 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
-public class TouchHandler : MonoBehaviourSingleton<TouchHandler>
+public class TouchHandler : MonoBehaviour
 {
-    public event Action<GameObject> TryGrab;
+    public static event Action<GameObject> TryGrab;
+    public static event Action<Button> ControllsButtonPressed;
 
     private PlayerInput _playerInput;
 
@@ -22,15 +26,15 @@ public class TouchHandler : MonoBehaviourSingleton<TouchHandler>
 
     private void OnEnable()
     {
-        _touchPressAction.performed += TryToGrab;
+        _touchPressAction.performed += OnPressed;
     }
 
     private void OnDisable()
     {
-        _touchPressAction.performed -= TryToGrab;
+        _touchPressAction.performed -= OnPressed;
     }
 
-    private void TryToGrab(InputAction.CallbackContext context)
+    private void OnPressed(InputAction.CallbackContext context)
     {
         Vector2 touchPosition = _touchPositionAction.ReadValue<Vector2>();
         GetObjectAtPosition(touchPosition);
@@ -38,13 +42,50 @@ public class TouchHandler : MonoBehaviourSingleton<TouchHandler>
 
     private void GetObjectAtPosition(Vector2 position)
     {
+        if (TryGrabAtPosition(position, out GameObject target))
+            TryGrab?.Invoke(target);
+    }
+
+    private bool TryGrabAtPosition(Vector2 position, out GameObject target)
+    {
         Ray ray = _mainCamera.ScreenPointToRay(position);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit))
         {
+            Debug.Log(hit.transform.gameObject);
             if (hit.transform.CompareTag("Food"))
-                TryGrab?.Invoke(hit.transform.gameObject);
+            {
+                target = hit.transform.gameObject;
+                return true;
+            }
         }
+        target = null;
+        return false;
+    }
+
+    private bool TryInvokeControllButton()
+    {
+        PointerEventData pointerEventData = new(EventSystem.current);
+        pointerEventData.position = Input.mousePosition;
+
+        List<RaycastResult> raycastResults = new();
+        EventSystem.current.RaycastAll(pointerEventData, raycastResults);
+
+        for (int i = 0; i < raycastResults.Count; i++)
+        {
+            if (raycastResults[i].gameObject.CompareTag("ControllsButton"))
+            {
+                ControllsButtonPressed?.Invoke(raycastResults[i].gameObject.GetComponent<Button>());
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void Update()
+    {
+        if (_touchPressAction.IsPressed())
+            TryInvokeControllButton();
     }
 }

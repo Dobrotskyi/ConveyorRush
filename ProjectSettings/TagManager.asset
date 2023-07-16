@@ -9,6 +9,7 @@ TagManager:
   - Floor
   - FoodBucket
   - Conveyor
+  - ControllsButton
   layers:
   - Default
   - TransparentFX

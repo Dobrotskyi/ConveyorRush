@@ -11,19 +11,11 @@ public class FoodSpawner : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log(MainMenu.Instance);
-        Debug.Log(FindObjectOfType<MainMenu>());
-        //FindObjectOfType<MainMenu>().StartGame += StartSpawning;
         MainMenu.StartGame += StartSpawning;
-    }
-
-    private void ResetScene()
-    {
     }
 
     private void OnDisable()
     {
-        //FindObjectOfType<MainMenu>().StartGame -= StartSpawning;
         MainMenu.StartGame -= StartSpawning;
     }
 
