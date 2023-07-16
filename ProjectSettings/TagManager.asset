@@ -8,6 +8,7 @@ TagManager:
   - Food
   - Floor
   - FoodBucket
+  - Conveyor
   layers:
   - Default
   - TransparentFX

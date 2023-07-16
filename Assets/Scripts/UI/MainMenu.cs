@@ -14,7 +14,6 @@ public class MainMenu : MonoBehaviourSingleton<MainMenu>
 
     private void OnDisable()
     {
-        Debug.Log("Content set active true");
         _mainMenuContent.gameObject.SetActive(true);
     }
 }

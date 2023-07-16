@@ -5,13 +5,13 @@ namespace AllPlayerActions
 {
     public class MoveAction : SinglePlayerAction
     {
+        public event Action<GameObject> ReachedPosition;
+
         private const float Left_Border_X = -2.8f;
         private const float Right_Border_X = 0.2f;
 
-        public event Action<GameObject> ReachedPosition;
-
         [SerializeField] private float _runningSpeed = 5f;
-        private GameObject _target;
+        private FoodMarker _targetFood;
         private Vector3 _newPos;
         private bool _movingToTarget;
         private bool _moveRight = false;
@@ -20,7 +20,7 @@ namespace AllPlayerActions
         {
             TurnOffMovingAnimations();
 
-            _target = target.gameObject;
+            _targetFood = target.GetComponent<FoodMarker>();
             _newPos = transform.position;
             _newPos.x = target.position.x;
 
@@ -47,7 +47,7 @@ namespace AllPlayerActions
         public void StopMoving()
         {
             _movingToTarget = false;
-            _target = null;
+            _targetFood = null;
             TurnOffMovingAnimations();
         }
 
@@ -55,11 +55,17 @@ namespace AllPlayerActions
         {
             if (_movingToTarget)
             {
+                if (!_targetFood.OnConveyor)
+                {
+                    StopMoving();
+                    return;
+                }
+
                 int direction = _moveRight ? 1 : -1;
                 transform.Translate(-transform.right * direction * Time.deltaTime * _runningSpeed);
                 if (Vector3.Distance(transform.position, _newPos) <= 0.1f)
                 {
-                    ReachedPosition?.Invoke(_target);
+                    ReachedPosition?.Invoke(_targetFood.gameObject);
                     StopMoving();
                 }
             }
