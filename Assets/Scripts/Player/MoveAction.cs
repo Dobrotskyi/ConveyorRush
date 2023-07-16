@@ -32,12 +32,10 @@ namespace AllPlayerActions
 
             if (transform.position.x < _newPos.x)
             {
-                //_animator.SetBool("MoveLeft", true);
                 _moveRight = false;
             }
             else
             {
-                //_animator.SetBool("MoveRight", true);
                 _moveRight = true;
             }
 
@@ -78,31 +76,16 @@ namespace AllPlayerActions
             transform.Translate(-transform.right * direction * Time.deltaTime * _runningSpeed);
         }
 
-        private void OnEnable()
+        public void MoveToTheRight()
         {
-            ControllsCanvas.MoveLeftButtonPressed += MoveToTheLeft;
-            ControllsCanvas.MoveRightButtonPressed += MoveToTheRight;
-        }
-
-        private void OnDisable()
-        {
-            ControllsCanvas.MoveLeftButtonPressed -= MoveToTheLeft;
-            ControllsCanvas.MoveRightButtonPressed -= MoveToTheRight;
-        }
-
-        //private void MoveToTheRight() => MoveToTheSide(true);
-        private void MoveToTheRight()
-        {
-            Debug.Log("MoveToTheRight");
+            if (_movingToTarget) return;
             MoveToTheSide(true);
         }
-        //private void MoveToTheLeft() => MoveToTheSide(false);
-        private void MoveToTheLeft()
+        public void MoveToTheLeft()
         {
-            Debug.Log("MoveToTheLeft");
+            if (_movingToTarget) return;
             MoveToTheSide(false);
         }
-
 
         private void TurnOffMovingAnimations()
         {

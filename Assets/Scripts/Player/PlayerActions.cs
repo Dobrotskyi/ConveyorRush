@@ -18,12 +18,16 @@ namespace AllPlayerActions
 
         private void OnEnable()
         {
+            ControllsCanvas.MoveLeftButtonPressed += MoveLeft;
+            ControllsCanvas.MoveRightButtonPressed += MoveRight;
             TouchHandler.TryGrab += TryGrab;
             _moveAction.ReachedPosition += TryGrab;
         }
 
         private void OnDisable()
         {
+            ControllsCanvas.MoveLeftButtonPressed -= MoveLeft;
+            ControllsCanvas.MoveRightButtonPressed -= MoveRight;
             TouchHandler.TryGrab -= TryGrab;
             _moveAction.ReachedPosition -= TryGrab;
         }
@@ -40,6 +44,18 @@ namespace AllPlayerActions
             }
             else
                 _moveAction.StartMovingTo(target.transform);
+        }
+
+        private void MoveLeft()
+        {
+            if (!_grabAction.Grabing)
+                _moveAction.MoveToTheLeft();
+        }
+
+        private void MoveRight()
+        {
+            if (!_grabAction.Grabing)
+                _moveAction.MoveToTheRight();
         }
     }
 }
