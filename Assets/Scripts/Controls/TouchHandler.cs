@@ -64,7 +64,6 @@ public class TouchHandler : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            Debug.Log(hit.transform.gameObject);
             if (hit.transform.CompareTag("Food"))
             {
                 target = hit.transform.gameObject;
@@ -101,6 +100,5 @@ public class TouchHandler : MonoBehaviour
         if (_touchPressAction.IsPressed())
             if (TryGetControllButton(out Button button))
                 ControllsButtonPressed?.Invoke(button);
-
     }
 }

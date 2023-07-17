@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4477013205668481449}
   - component: {fileID: 7325930152158547521}
   - component: {fileID: 7856991117156333930}
-  - component: {fileID: 4005085801864609794}
+  - component: {fileID: 6305650338443124042}
   m_Layer: 0
   m_Name: bucket
   m_TagString: FoodBucket
@@ -166,7 +166,8 @@ MonoBehaviour:
   - {fileID: 8548603893265275410}
   - {fileID: 8790087785895935075}
   - {fileID: 1318145450786367579}
---- !u!65 &4005085801864609794
+  _trigger: {fileID: 6305650338443124042}
+--- !u!65 &6305650338443124042
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -667,7 +668,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5930319660178778600}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0608, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
