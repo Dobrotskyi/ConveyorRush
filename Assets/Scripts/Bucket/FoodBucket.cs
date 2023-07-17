@@ -23,8 +23,8 @@ public class FoodBucket : MonoBehaviourSingleton<FoodBucket>
         _itemToStore.transform.localRotation = Quaternion.identity;
         _itemToStore.transform.localScale /= 2;
         _itemsInside++;
-        ItemStored?.Invoke();
         _itemToStore = null;
+        ItemStored?.Invoke();
     }
 
     private void DisableRigidbody()
