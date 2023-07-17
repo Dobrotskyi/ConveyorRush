@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7856991117156333930}
   - component: {fileID: 4005085801864609794}
   m_Layer: 0
-  m_Name: basket
+  m_Name: bucket
   m_TagString: FoodBucket
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,6 +40,7 @@ Transform:
   - {fileID: 2046846810409729509}
   - {fileID: 7729013648965775625}
   - {fileID: 4978052634771596385}
+  - {fileID: 3185336251863775365}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -166,6 +167,7 @@ MonoBehaviour:
   - {fileID: 8548603893265275410}
   - {fileID: 8790087785895935075}
   - {fileID: 1318145450786367579}
+  _invisibleLid: {fileID: 6838360890679749325}
 --- !u!65 &4005085801864609794
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -679,6 +681,59 @@ Transform:
   m_Father: {fileID: 4851300595101696929}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6838360890679749325
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3185336251863775365}
+  - component: {fileID: 664730985540670014}
+  m_Layer: 0
+  m_Name: BucketInvisibleLid
+  m_TagString: InvisibleLid
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3185336251863775365
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6838360890679749325}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4851300595101696929}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &664730985540670014
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6838360890679749325}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.62213445, y: 0.037021756, z: 0.46545863}
+  m_Center: {x: -0.002303958, y: 0.27101064, z: 0}
 --- !u!1 &8256326602041309823
 GameObject:
   m_ObjectHideFlags: 0
