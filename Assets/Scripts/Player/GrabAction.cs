@@ -56,7 +56,6 @@ namespace AllPlayerActions
             _animator.ResetTrigger("TargetBecameNull");
             _animator.SetTrigger("TargetBecameNull");
             SetActionFinished();
-            ResetTarget();
         }
 
         private void BringHandInAnimPosition()
@@ -114,17 +113,15 @@ namespace AllPlayerActions
             Rigidbody targetRb = _target.GetComponent<Rigidbody>();
             targetRb.useGravity = true;
             targetRb.isKinematic = false;
-            ResetTarget();
         }
 
-        private void ResetTarget()
+        private void SetActionFinished()
         {
+            ActionFinished = true;
             _target = null;
             _isGrabing = false;
             _inHand = false;
             _handInPlace = false;
         }
-
-        private void SetActionFinished() => ActionFinished = true;
     }
 }
