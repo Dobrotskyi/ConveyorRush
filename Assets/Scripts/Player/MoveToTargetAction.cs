@@ -5,11 +5,11 @@ namespace AllPlayerActions
 {
     public class MoveToTargetAction : MovementAction
     {
-        public event Action<GameObject> ReachedPosition;
-        public bool MovingToTarget { private set; get; }
-
         private const float Left_Border_X = -2.8f;
         private const float Right_Border_X = 0.2f;
+
+        public event Action<GameObject> ReachedPosition;
+        public bool MovingToTarget { private set; get; }
 
         private FoodMarker _targetFood;
         private Vector3 _newPos;

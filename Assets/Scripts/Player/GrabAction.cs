@@ -4,7 +4,7 @@ namespace AllPlayerActions
 {
     public class GrabAction : SinglePlayerAction
     {
-        private const float _movementSpeed = 5f;
+        private const float MOVEMENT_SPEED = 5f;
 
         public bool ActionFinished { private set; get; } = true;
 
@@ -48,11 +48,11 @@ namespace AllPlayerActions
             _handRigTarget.transform.localPosition =
                                  Vector3.Lerp(_handRigTarget.transform.localPosition,
                                  _startHandPositionInStoreAnimation,
-                                 _movementSpeed * Time.deltaTime);
+                                 MOVEMENT_SPEED * Time.deltaTime);
             _handHint.transform.localPosition =
                                  Vector3.Lerp(_handHint.transform.localPosition,
                                  _startHintPositionInStoreAnimation,
-                                 _movementSpeed * Time.deltaTime);
+                                 MOVEMENT_SPEED * Time.deltaTime);
 
             if (Vector3.Distance(_handRigTarget.transform.localPosition, _startHandPositionInStoreAnimation) <= 0.05f)
             {
