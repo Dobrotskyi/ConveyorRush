@@ -34,13 +34,29 @@ namespace AllPlayerActions
 
         private void Update()
         {
+            if (!ActionFinished)
+                if (_target == null)
+                {
+                    TargetBecameNull();
+                    return;
+                }
+
             if (_target == null)
                 return;
+
             if (_isGrabing)
                 _handRigTarget.transform.position = _target.transform.position;
 
             if (_inHand && !_handInPlace)
                 BringHandInAnimPosition();
+        }
+
+        private void TargetBecameNull()
+        {
+            _animator.ResetTrigger("TargetBecameNull");
+            _animator.SetTrigger("TargetBecameNull");
+            SetActionFinished();
+            ResetTarget();
         }
 
         private void BringHandInAnimPosition()
@@ -88,15 +104,11 @@ namespace AllPlayerActions
 
         private void PlayerStoredItem()
         {
-            _target.transform.SetParent(null, true);
-            Rigidbody targetRb = _target.GetComponent<Rigidbody>();
-            targetRb.useGravity = true;
-            targetRb.isKinematic = false;
             _foodBucket.WaitForObject(_target);
-            ResetTarget();
+            LetGoItem();
         }
 
-        private void ThrowAwayItem()
+        private void LetGoItem()
         {
             _target.transform.SetParent(null, true);
             Rigidbody targetRb = _target.GetComponent<Rigidbody>();

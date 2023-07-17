@@ -54,7 +54,7 @@ namespace AllPlayerActions
             if (MovingToTarget)
             {
                 Debug.Log(_targetFood.OnConveyor);
-                if (!_targetFood.OnConveyor)
+                if (_targetFood == null || !_targetFood.OnConveyor)
                 {
                     StopMoving();
                     return;
