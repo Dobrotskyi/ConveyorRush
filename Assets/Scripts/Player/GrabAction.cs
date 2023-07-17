@@ -18,6 +18,7 @@ namespace AllPlayerActions
         private bool _isGrabing = false;
         private bool _inHand = false;
         private bool _handInPlace = false;
+        public bool ActionFinished { private set; get; } = true;
 
         public void Grab(GameObject target)
         {
@@ -29,6 +30,7 @@ namespace AllPlayerActions
             _animator.SetTrigger("GrabItem");
             _target = target;
             _isGrabing = true;
+            ActionFinished = false;
         }
 
         private void Update()
@@ -111,5 +113,7 @@ namespace AllPlayerActions
             _inHand = false;
             _handInPlace = false;
         }
+
+        private void SetActionFinished() => ActionFinished = true;
     }
 }

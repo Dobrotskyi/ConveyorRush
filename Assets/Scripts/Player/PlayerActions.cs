@@ -52,13 +52,13 @@ namespace AllPlayerActions
 
         private void MoveLeft()
         {
-            if (!_grabAction.Grabing && !_toTargetAction.MovingToTarget)
+            if (_grabAction.ActionFinished && !_toTargetAction.MovingToTarget)
                 _sideMovementAction.MoveToTheLeft();
         }
 
         private void MoveRight()
         {
-            if (!_grabAction.Grabing && !_toTargetAction.MovingToTarget)
+            if (_grabAction.ActionFinished && !_toTargetAction.MovingToTarget)
                 _sideMovementAction.MoveToTheRight();
         }
 
