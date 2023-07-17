@@ -20,6 +20,7 @@ public class FoodBucket : MonoBehaviourSingleton<FoodBucket>
         DisableRigidbody();
         _itemToStore.transform.SetParent(_foodPlacementPoints[_itemsInside]);
         _itemToStore.transform.localPosition = Vector3.zero;
+        _itemToStore.transform.localRotation = Quaternion.identity;
         _itemToStore.transform.localScale /= 2;
         _itemsInside++;
         ItemStored?.Invoke();
