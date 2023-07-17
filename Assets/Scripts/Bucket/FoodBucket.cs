@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodBucket : MonoBehaviourSingleton<FoodBucket>
+public class FoodBucket : MonoBehaviour
 {
     public static event Action ItemStored;
 
@@ -19,7 +19,6 @@ public class FoodBucket : MonoBehaviourSingleton<FoodBucket>
             return;
 
         itemToStore.GetComponent<FoodMarker>().BeingStored = true;
-        Physics.IgnoreCollision(itemToStore.GetComponent<Collider>(), _trigger);
 
         itemToStore.transform.SetParent(_foodPlacementPoints[_itemsInside]);
         itemToStore.transform.localPosition = Vector3.zero;

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class MainMenu : MonoBehaviourSingleton<MainMenu>
+public class MainMenu : MonoBehaviour
 {
     public static event Action StartGame;
     [SerializeField] private GameObject _mainMenuContent;
