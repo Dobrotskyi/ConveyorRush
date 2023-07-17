@@ -5,7 +5,6 @@ using UnityEngine;
 public class FoodBucket : MonoBehaviourSingleton<FoodBucket>
 {
     public static event Action ItemStored;
-    public bool WaitingForItem => !(_itemToStore == null);
 
     [SerializeField] private List<Transform> _foodPlacementPoints;
     private int _itemsInside = 0;

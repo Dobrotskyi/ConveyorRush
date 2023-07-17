@@ -38,7 +38,7 @@ namespace AllPlayerActions
 
         private void TryGrab(GameObject target)
         {
-            if (_grabAction.Grabing)
+            if (!_grabAction.ActionFinished)
                 return;
 
             if (Vector3.Distance(target.transform.position, _shoulderPlacement.position) < MAX_REACH_DIST)

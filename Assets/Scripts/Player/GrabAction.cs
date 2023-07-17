@@ -6,7 +6,7 @@ namespace AllPlayerActions
     {
         private const float _movementSpeed = 5f;
 
-        public bool Grabing => _isGrabing || _inHand || _foodBucket.WaitingForItem;
+        public bool ActionFinished { private set; get; } = true;
 
         [SerializeField] private GameObject _handRigTarget;
         [SerializeField] private GameObject _handHint;
@@ -18,11 +18,10 @@ namespace AllPlayerActions
         private bool _isGrabing = false;
         private bool _inHand = false;
         private bool _handInPlace = false;
-        public bool ActionFinished { private set; get; } = true;
 
         public void Grab(GameObject target)
         {
-            if (Grabing)
+            if (!ActionFinished)
                 return;
 
             _handRigTarget.transform.position = target.transform.position;
