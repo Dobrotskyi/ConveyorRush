@@ -36,7 +36,7 @@ public class SingletonTask
         return result;
     }
 
-    public void OnItemStored()
+    private void OnItemStored()
     {
         if (FoodAmt > 0)
         {

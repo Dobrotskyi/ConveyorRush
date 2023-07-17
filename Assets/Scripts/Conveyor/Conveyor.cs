@@ -12,6 +12,16 @@ public class Conveyor : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
     }
 
+    private void OnEnable()
+    {
+        SingletonTask.Instance.TaskCompleted += OnTaskCompleted;
+    }
+
+    private void OnDisable()
+    {
+        SingletonTask.Instance.TaskCompleted -= OnTaskCompleted;
+    }
+
     private void FixedUpdate()
     {
         Move();
@@ -25,5 +35,10 @@ public class Conveyor : MonoBehaviour
         _rbPosition = _rigidbody.position;
         _rigidbody.position -= _conveyorSpeed * Time.fixedDeltaTime * _rigidbody.transform.right;
         _rigidbody.MovePosition(_rbPosition);
+    }
+
+    private void OnTaskCompleted()
+    {
+        gameObject.SetActive(false);
     }
 }
