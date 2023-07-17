@@ -7,11 +7,6 @@ public class FoodMarker : MonoBehaviour
     [SerializeField] private FoodTypes _type;
     public FoodTypes Type => _type;
 
-    private void Awake()
-    {
-        Physics.IgnoreCollision(GameObject.FindWithTag("InvisibleLid").GetComponent<Collider>(), GetComponent<Collider>());
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Floor"))

@@ -10,7 +10,6 @@ TagManager:
   - FoodBucket
   - Conveyor
   - ControllsButton
-  - InvisibleLid
   layers:
   - Default
   - TransparentFX
