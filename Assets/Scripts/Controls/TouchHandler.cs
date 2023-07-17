@@ -16,7 +16,6 @@ public class TouchHandler : MonoBehaviour
     private InputAction _touchPositionAction;
     private InputAction _touchPressAction;
     private Camera _mainCamera;
-    private bool _controllButtonHeld = false;
 
     private void Awake()
     {

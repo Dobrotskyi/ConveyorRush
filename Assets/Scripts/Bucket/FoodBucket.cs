@@ -5,6 +5,7 @@ using UnityEngine;
 public class FoodBucket : MonoBehaviourSingleton<FoodBucket>
 {
     public static event Action ItemStored;
+    public bool WaitingForItem => !(_itemToStore == null);
 
     [SerializeField] private List<Transform> _foodPlacementPoints;
     private int _itemsInside = 0;
@@ -17,7 +18,7 @@ public class FoodBucket : MonoBehaviourSingleton<FoodBucket>
         if (_itemsInside >= _foodPlacementPoints.Count)
             return;
 
-        TempFuncDisableRigidbody();
+        DisableRigidbody();
         _itemToStore.transform.SetParent(_foodPlacementPoints[_itemsInside]);
         _itemToStore.transform.localPosition = Vector3.zero;
         _itemToStore.transform.localScale /= 2;
@@ -26,7 +27,7 @@ public class FoodBucket : MonoBehaviourSingleton<FoodBucket>
         _itemToStore = null;
     }
 
-    private void TempFuncDisableRigidbody()
+    private void DisableRigidbody()
     {
         Rigidbody rb = _itemToStore.GetComponent<Rigidbody>();
         rb.isKinematic = true;

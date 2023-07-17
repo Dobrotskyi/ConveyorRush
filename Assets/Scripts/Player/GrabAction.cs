@@ -6,7 +6,7 @@ namespace AllPlayerActions
     {
         private const float _movementSpeed = 5f;
 
-        public bool Grabing => _isGrabing || _inHand;
+        public bool Grabing => _isGrabing || _inHand || _foodBucket.WaitingForItem;
 
         [SerializeField] private GameObject _handRigTarget;
         [SerializeField] private GameObject _handHint;
