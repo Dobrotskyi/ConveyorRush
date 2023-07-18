@@ -16,6 +16,7 @@ public class TouchHandler : MonoBehaviour
     private InputAction _touchPositionAction;
     private InputAction _touchPressAction;
     private Camera _mainCamera;
+    private bool _controllButtonPressed;
 
     private void Awake()
     {
@@ -28,21 +29,11 @@ public class TouchHandler : MonoBehaviour
     private void OnEnable()
     {
         _touchPressAction.performed += OnPressed;
-        _touchPressAction.canceled += TouchReleased;
     }
 
     private void OnDisable()
     {
         _touchPressAction.performed -= OnPressed;
-        _touchPressAction.canceled -= TouchReleased;
-    }
-
-    private void TouchReleased(InputAction.CallbackContext context)
-    {
-        if (TryGetControllButton(out Button button))
-        {
-            ControllButtonReleased?.Invoke();
-        }
     }
 
     private void OnPressed(InputAction.CallbackContext context)
@@ -74,6 +65,21 @@ public class TouchHandler : MonoBehaviour
         return false;
     }
 
+    private void Update()
+    {
+        if (_touchPressAction.IsPressed())
+        {
+            if (TryGetControllButton(out Button button))
+                ControllsButtonPressed?.Invoke(button);
+            else
+                if (_controllButtonPressed)
+            {
+                ControllButtonReleased?.Invoke();
+                _controllButtonPressed = false;
+            }
+        }
+    }
+
     private bool TryGetControllButton(out Button button)
     {
         PointerEventData pointerEventData = new(EventSystem.current);
@@ -88,17 +94,11 @@ public class TouchHandler : MonoBehaviour
             {
                 ControllsButtonPressed?.Invoke(raycastResults[i].gameObject.GetComponent<Button>());
                 button = raycastResults[i].gameObject.GetComponent<Button>();
+                _controllButtonPressed = true;
                 return true;
             }
         }
         button = null;
         return false;
-    }
-
-    private void Update()
-    {
-        if (_touchPressAction.IsPressed())
-            if (TryGetControllButton(out Button button))
-                ControllsButtonPressed?.Invoke(button);
     }
 }

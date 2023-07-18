@@ -16,7 +16,6 @@ namespace AllPlayerActions
             int direction = moveRight ? 1 : -1;
             ApplyMoveAnimations(moveRight);
             transform.Translate(-transform.right * direction * Time.deltaTime * _runningSpeed);
-
         }
 
         protected void TurnOffMovingAnimations()
