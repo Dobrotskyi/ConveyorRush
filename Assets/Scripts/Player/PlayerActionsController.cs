@@ -73,7 +73,7 @@ namespace AllPlayerActions
 
         private IEnumerator AwayFromBucketWithSeconds(float durationInSeconds)
         {
-            float timeAtBegining = Time.timeSinceLevelLoad;
+            float timeAtBegining = Time.time;
             while (Time.time - timeAtBegining < durationInSeconds)
             {
                 transform.Translate(-transform.right * 0.5f * Time.deltaTime);
