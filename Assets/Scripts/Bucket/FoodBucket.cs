@@ -7,7 +7,6 @@ public class FoodBucket : MonoBehaviour
     public static event Action ItemStored;
 
     [SerializeField] private List<Transform> _foodPlacementPoints;
-    [SerializeField] private Collider _trigger;
     private int _itemsInside = 0;
     private GameObject _itemToStore;
 

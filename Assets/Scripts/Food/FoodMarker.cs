@@ -13,10 +13,8 @@ public class FoodMarker : MonoBehaviour
         if (collision.gameObject.CompareTag("Floor"))
             Destroy(gameObject);
         else if (collision.gameObject.CompareTag("Conveyor"))
-        {
-            Debug.Log("On Conveyor");
             OnConveyor = true;
-        }
+
         else if (BeingStored)
         {
             if (collision.gameObject.CompareTag("FoodBucket") && !collision.collider.isTrigger)
@@ -37,9 +35,6 @@ public class FoodMarker : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("Conveyor"))
-        {
-            Debug.Log("Off Conveyor");
             OnConveyor = false;
-        }
     }
 }
