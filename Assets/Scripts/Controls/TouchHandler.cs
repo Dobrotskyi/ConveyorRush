@@ -29,11 +29,19 @@ public class TouchHandler : MonoBehaviour
     private void OnEnable()
     {
         _touchPressAction.performed += OnPressed;
+        _touchPressAction.canceled += TouchReleased;
     }
 
     private void OnDisable()
     {
         _touchPressAction.performed -= OnPressed;
+        _touchPressAction.canceled -= TouchReleased;
+    }
+
+    private void TouchReleased(InputAction.CallbackContext context)
+    {
+        if (TryGetControllButton(out Button button))
+            ControllButtonReleased?.Invoke();
     }
 
     private void OnPressed(InputAction.CallbackContext context)
