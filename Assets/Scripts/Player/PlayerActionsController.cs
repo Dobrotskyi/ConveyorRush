@@ -2,9 +2,12 @@ using UnityEngine;
 
 namespace AllPlayerActions
 {
-    public class PlayerActions : MonoBehaviour
+    [RequireComponent(typeof(GrabAction))]
+    [RequireComponent(typeof(SideMovementAction))]
+    [RequireComponent(typeof(MoveToTargetAction))]
+    public class PlayerActionsController : MonoBehaviour
     {
-        private const float MAX_REACH_DIST = 1f;
+        private const float MAX_REACH_DIST = 0.5f;
 
         [SerializeField] private Transform _shoulderPlacement;
         private GrabAction _grabAction;
@@ -41,7 +44,7 @@ namespace AllPlayerActions
             if (!_grabAction.ActionFinished)
                 return;
 
-            if (Vector3.Distance(target.transform.position, _shoulderPlacement.position) < MAX_REACH_DIST)
+            if (Mathf.Abs(_shoulderPlacement.position.x - target.transform.position.x) < MAX_REACH_DIST)
             {
                 _toTargetAction.StopMoving();
                 _grabAction.Grab(target);
