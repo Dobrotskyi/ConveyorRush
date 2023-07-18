@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.Progress;
 
 namespace AllPlayerActions
 {
@@ -104,15 +105,32 @@ namespace AllPlayerActions
         private void PlayerStoredItem()
         {
             _foodBucket.WaitForObject(_target);
-            LetGoItem();
+            LetGoItem(_target);
         }
 
-        private void LetGoItem()
+        private void PlayerThrowAwayItem() => LetGoItem(_target.gameObject);
+
+        private void LetGoBucket()
         {
-            _target.transform.SetParent(null, true);
-            Rigidbody targetRb = _target.GetComponent<Rigidbody>();
-            targetRb.useGravity = true;
-            targetRb.isKinematic = false;
+            GameObject bucketClone = Instantiate(_foodBucket.gameObject);
+            bucketClone.transform.SetParent(null);
+            bucketClone.transform.position = _foodBucket.transform.position;
+            bucketClone.transform.rotation = _foodBucket.transform.rotation;
+            Rigidbody cloneRb = bucketClone.GetComponent<Rigidbody>();
+            cloneRb.isKinematic = false;
+            cloneRb.useGravity = true;
+            _foodBucket.gameObject.SetActive(false);
+        }
+
+        private void LetGoItem(GameObject item)
+        {
+            item.transform.SetParent(null, true);
+
+            if (item.TryGetComponent<Rigidbody>(out Rigidbody itemRb))
+            {
+                itemRb.useGravity = true;
+                itemRb.isKinematic = false;
+            }
         }
 
         private void SetActionFinished()

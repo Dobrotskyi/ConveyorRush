@@ -36041,7 +36041,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 1.7
-    functionName: LetGoItem
+    functionName: PlayerThrowAwayItem
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

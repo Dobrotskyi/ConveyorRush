@@ -29,7 +29,6 @@ public class FoodBucket : MonoBehaviour
         ItemStored?.Invoke();
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
         if (_itemToStore != null && other.gameObject == _itemToStore)

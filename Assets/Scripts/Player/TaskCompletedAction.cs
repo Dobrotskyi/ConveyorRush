@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace AllPlayerActions
 {
     public class TaskCompletedAction : SinglePlayerAction
