@@ -37,4 +37,21 @@ public class FoodMarker : MonoBehaviour
         if (collision.gameObject.CompareTag("Conveyor"))
             OnConveyor = false;
     }
+
+    private void OnEnable()
+    {
+        SingletonTask.Instance.TaskCompleted += DestroyIfNotInStored;
+    }
+
+    private void OnDisable()
+    {
+        SingletonTask.Instance.TaskCompleted -= DestroyIfNotInStored;
+    }
+
+    private void DestroyIfNotInStored()
+    {
+        if (BeingStored)
+            return;
+        Destroy(gameObject);
+    }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace AllPlayerActions
@@ -63,6 +64,21 @@ namespace AllPlayerActions
         {
             if (_grabAction.ActionFinished && !_toTargetAction.MovingToTarget)
                 _sideMovementAction.MoveToTheRight();
+        }
+
+        private void MoveAwayFromBucket()
+        {
+            StartCoroutine(AwayFromBucketWithSeconds(1));
+        }
+
+        private IEnumerator AwayFromBucketWithSeconds(float durationInSeconds)
+        {
+            float timeAtBegining = Time.timeSinceLevelLoad;
+            while (Time.time - timeAtBegining < durationInSeconds)
+            {
+                transform.Translate(-transform.right * 0.5f * Time.deltaTime);
+                yield return new WaitForEndOfFrame();
+            }
         }
 
         private void OnControllButtonReleased() => _sideMovementAction.StopMoving();
