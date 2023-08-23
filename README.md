@@ -5,7 +5,7 @@ Conveyor Rush is a small Hyper Casual Android game.
 
 You can watch game footage via link: [link](https://www.youtube.com/watch?v=URuxnNbDVXk&ab_channel=ValeriiDobrotskyi)
 
-Also you can try this game by yourself by donwloading an apk 
+Also you can try this game by yourself by downloading an apk 
 
 # Here are some screenshots. 
 ![image](https://github.com/Dobrotskyi/ConveyorRush/assets/118120050/44ef405c-a048-4af7-a120-e5b2d2d08689)
